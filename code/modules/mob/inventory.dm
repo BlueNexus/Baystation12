@@ -220,6 +220,8 @@ var/list/slot_equipment_priority = list( \
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)
+	if(!O) // Nothing to remove, so we succeed.
+		return 1
 	src.u_equip(O)
 	if (src.client)
 		src.client.screen -= O
@@ -244,3 +246,8 @@ var/list/slot_equipment_priority = list( \
 //Outdated but still in use apparently. This should at least be a human proc.
 /mob/proc/get_equipped_items()
 	return list()
+
+/mob/proc/delete_inventory()
+	for(var/entry in get_equipped_items())
+		drop_from_inventory(entry)
+		qdel(entry)
