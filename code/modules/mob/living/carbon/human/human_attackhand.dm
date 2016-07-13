@@ -29,8 +29,8 @@
 
 		if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 			H.do_attack_animation(src)
-			var/damage = rand(0, 9)
-			if(!damage)
+			var/damage = rand(1, 9)
+			if(prob(calc_racial_miss_chance(10, 1, src, H)))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
 				return 0
@@ -178,9 +178,9 @@
 						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
-				if(prob(80))
+				if(prob(calc_racial_miss_chance(80, 0, src, H)))
 					hit_zone = ran_zone(hit_zone)
-				if(prob(15) && hit_zone != "chest") // Missed!
+				if(prob(calc_racial_miss_chance(15, 1, src, H)) && hit_zone != "chest") // Missed!
 					if(!src.lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else

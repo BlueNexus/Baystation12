@@ -168,7 +168,7 @@ var/list/global/organ_rel_size = list(
 	var/miss_chance = 10
 	if (zone in base_miss_chance)
 		miss_chance = base_miss_chance[zone]
-	miss_chance = max(miss_chance + miss_chance_mod, 0)
+	miss_chance = calc_racial_miss_chance(max(miss_chance + miss_chance_mod, 0), 1, target, null)
 	if(prob(miss_chance))
 		if(prob(70))
 			return null
@@ -636,4 +636,21 @@ proc/is_blind(A)
 	if(dna)
 		dna.real_name = real_name
 	return 1
+
+proc/calc_racial_miss_chance(var/initial_chance, var/missing, var/mob/target, var/mob/user) //If missing = 1: miss chance, if missing = 0: hit chance
+	if((!initial_chance) || (!target.mob_size) || (!target))
+		return 0
+	world << "IC: [initial_chance]"
+	var/size_modifier = null
+	if(user) //If this is a melee attack...
+		size_modifier = mob_size_difference(user, target) //...Take size difference into account
+	world << "SM: [size_modifier]"
+	var/base_modifier = target.mob_size + size_modifier
+	world << "BM: [base_modifier]"
+	if(missing)
+		initial_chance = 100 - initial_chance
+	world << "IC2: [initial_chance]"
+	var/final_modifier = (initial_chance * (base_modifier / MOB_MEDIUM))
+	world << "FM: [final_modifier]"
+	return final_modifier
 
