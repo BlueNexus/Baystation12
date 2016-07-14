@@ -637,19 +637,18 @@ proc/is_blind(A)
 		dna.real_name = real_name
 	return 1
 
-proc/calc_racial_miss_chance(var/initial_chance, var/missing, var/mob/target, var/mob/user) //If missing = 1: miss chance, if missing = 0: hit chance
+proc/calc_racial_miss_chance(var/initial_chance, var/missing, var/mob/target, var/mob/user = null) //If missing = 1: miss chance, if missing = 0: hit chance
 	if((!initial_chance) || (!target.mob_size) || (!target))
 		return 0
 	world << "IC: [initial_chance]"
 	var/size_modifier = null
 	if(user) //If this is a melee attack...
-		size_modifier = mob_size_difference(user, target) //...Take size difference into account
+		size_modifier = target.mob_size * mob_size_difference(target.mob_size, user.mob_size) //...Take size difference into account
 	world << "SM: [size_modifier]"
 	var/base_modifier = target.mob_size + size_modifier
 	world << "BM: [base_modifier]"
 	if(missing)
 		initial_chance = 100 - initial_chance
-	world << "IC2: [initial_chance]"
 	var/final_modifier = (initial_chance * (base_modifier / MOB_MEDIUM))
 	world << "FM: [final_modifier]"
 	return final_modifier
