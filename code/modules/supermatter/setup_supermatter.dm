@@ -8,7 +8,6 @@
 #define ENERGY_CARBONDIOXIDE 150	// Roughly 10 emitter shots.
 #define ENERGY_PHORON 300			// Roughly 20 emitter shots. Phoron can take more but this is enough to max out both SMESs anyway.
 
-
 /datum/admins/proc/setup_supermatter()
 	set category = "Debug"
 	set name = "Setup Supermatter"
@@ -18,6 +17,10 @@
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
+		return
+
+	if(!(locate(/obj/effect/engine_setup/coolant_canister) in world))
+		usr << "This map is not appropriate for this verb."
 		return
 
 	var/response = input(usr, "Are you sure? This will start up the engine with selected gas as coolant.", "Engine setup") as null|anything in list("N2", "CO2", "PH", "Abort")
