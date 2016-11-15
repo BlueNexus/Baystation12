@@ -4,6 +4,7 @@
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob"
 	light_range = 3
+	light_color = "#b5ff5b"
 	desc = "Some blob creature thingy."
 	density = 1
 	opacity = 0
