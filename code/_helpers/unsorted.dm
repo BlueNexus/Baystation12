@@ -1164,3 +1164,20 @@ var/mob/dview/dview_mob = new
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)
 	CRASH(msg)
+
+/proc/attempt(user, to_call, args)
+	if(hascall(user, to_call))
+		user:to_call(arglist(args))
+		return 1
+	else
+		return 0
+
+//TESTING THIS ONLY
+/datum/thingie
+
+/datum/thingie/new()
+	..()
+	ASSERT(attempt(src, maybe, var/list(1, 2, 3)))
+
+/datum/thingie/proc/maybe(one, two, three)
+	ASSERT((one == 1) && (two = 2) && (three == 3))
