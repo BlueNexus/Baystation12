@@ -104,7 +104,14 @@
 	if (shock_damage<1)
 		return 0
 
-	src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
+	if (shock_damage > (src.max_health * 2)) //Utter disintegration
+		for(var/temp_zone in BP_ALL_ZONES)
+			src.apply_damage(shock_damage, BURN, temp_zone, used_weapon="Electrocution")
+		if(src.stat != 2) //In case they somehow survive
+			Stun(25)
+			Weaken(25)
+	else
+		src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
