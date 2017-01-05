@@ -104,7 +104,7 @@
 	if (shock_damage<1)
 		return 0
 
-	if (shock_damage > (src.max_health * 2)) //Utter disintegration
+	if (shock_damage > (src.total_health * 2)) //Utter disintegration
 		for(var/temp_zone in BP_ALL_ZONES)
 			src.apply_damage(shock_damage, BURN, temp_zone, used_weapon="Electrocution")
 		if(src.stat != 2) //In case they somehow survive
