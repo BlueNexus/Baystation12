@@ -158,7 +158,7 @@
 /datum/powernet/proc/get_electrocute_damage()
 	switch(avail)
 		if(4000000 to INFINITY)
-			return min(rand(150,450),rand(150,450)) //Zzzzap!
+			return min(rand(100,300),rand(100,300)) //Zzzzap!
 		if (1000000 to 4000000)
 			return min(rand(50,160),rand(50,160))
 		if (200000 to 1000000)
