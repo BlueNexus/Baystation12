@@ -6,24 +6,18 @@ var/list/to_process = list()
 
 /repository/radiation
 	var/list/sources = list() //All the radiation sources we know about
-	var/list/irradiated_turfs = list()
 	var/list/irradiated_mobs = list()
 	var/list/resistance_cache = list()
 
-/repository/radiation/proc/report_rads(var/turf/T as turf)
-	return irradiated_turfs[T]
+/repository/radiation/proc/get_rads(source, target)
 
 /repository/radiation/proc/radiate(source, power) //Sends out a radiation pulse, taking walls into account
 	if(!(source && power)) //Sanity checking
 		return
 
-	var/range = min(round(sqrt(power / config.radiation_lower_limit)), 31)
+
 	var/turf/epicentre = get_turf(source)
-	to_process = list()
-
-	range = min(epicentre.x, world.maxx - epicentre.x, epicentre.y, world.maxy - epicentre.y, range)
-
-	to_process = trange(range, epicentre)
+	to_process = trange(sources[source], epicentre)
 	to_process[epicentre] = power
 
 	for(var/turf/spot in to_process)
@@ -85,6 +79,15 @@ var/list/to_process = list()
 /turf/simulated/wall/calc_rad_resistance()
 	radiation_repository.resistance_cache[src] = (length(contents) + 1)
 	rad_resistance = (density ? material.weight : 0)
+
+/datum/temp_source
+	parent_type = /obj
+	var/rad_power = 0
+
+/datum/temp_source/New(power)
+	..()
+	rad_power = power
+
 
 /atom
 	var/rad_power = 0
