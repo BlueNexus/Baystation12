@@ -87,6 +87,10 @@
 	emp_protection = 40 //change this to 30 if too high.
 	online_slowdown = 0
 	aimove_power_usage = 50
+	var/has_custom_name = 0
+	var/has_custom_desc = 0
+	var/unique_name 
+	var/unique_desc	
 
 	chest_type = /obj/item/clothing/suit/space/rig/light/ninja
 	glove_type = /obj/item/clothing/gloves/rig/light/ninja
@@ -116,10 +120,6 @@
 	..()
 
 /obj/item/weapon/rig/light/ninja/New()
-	var/has_custom_name = 0
-	var/has_custom_desc = 0
-	var/unique_name 
-	var/unique_desc	
 	if(!has_custom_name)
 		name = "Ominous voidsuit control module"		
 	else
@@ -130,7 +130,7 @@
 		desc = unique_desc	
 	..()
 	
-/obj/item/clothing/gloves/rig/light/ninja/verb/rename_suit()
+/obj/item/weapon/rig/light/ninja/verb/rename_suit()
 	set name = "Name Ninja Suit"
 	set desc = "Rename your black voidsuit."
 	set category = "Object"
@@ -147,7 +147,7 @@
 		return 1
 	has_custom_name = 1
 	
-/obj/item/clothing/gloves/rig/light/ninja/verb/rewrite_suit_desc()
+/obj/item/weapon/rig/light/ninja/verb/rewrite_suit_desc()
 	set name = "Describe Ninja suit"
 	set desc = "Give your voidsuit a custom description."
 	set category = "Object"
