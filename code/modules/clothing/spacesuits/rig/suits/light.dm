@@ -80,25 +80,20 @@
 	siemens_coefficient = 0
 
 /obj/item/weapon/rig/light/ninja
-	var/has_custom_name = N
-	N = 0
-	var/has_custom_desc = D
-	D = 0
+	var/has_custom_name = 0
+	var/has_custom_desc = 0
 	var/ninja/unique_name 
 	var/ninja/unique_desc
 	
-	
-	if(N is 0)
-		name = "Ominous voidsuit control module"
-		
+	if(!has_custom_name)
+		name = "Ominous voidsuit control module"		
 	else
 		name = unique_name
-
-	if(D is 0)
+	if(!has_custom_desc)
 		desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for assassins."
 	else
-		desc = unique_desc
-		
+		desc = unique_desc		
+	
 	suit_type = "ominous"
 	icon_state = "ninja_rig"
 	armor = list(melee = 50, bullet = 15, laser = 30, energy = 10, bomb = 25, bio = 100, rad = 30)
@@ -149,8 +144,7 @@
 		unique_name = input
 		to_chat(M, "Suit naming succesful!")
 		return 1
-	obj/item/clothing/gloves/rig/light/ninja/has_custom_name = N
-		return 1
+	has_custom_name = 1
 	
 /obj/item/clothing/gloves/rig/light/ninja/verb/rewrite_suit_desc
 	set name = "Describe Ninja suit"
@@ -165,8 +159,7 @@
 		unique_desc = input
 		to_chat(M, "Suit description succesful!")
 		return 1
-	obj/item/clothing/gloves/rig/light/ninja/has_custom_desc = D
-		return 1
+	has_custom_desc = 1
 	
 
 	
