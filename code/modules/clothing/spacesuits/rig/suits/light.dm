@@ -83,16 +83,7 @@
 	var/has_custom_name = 0
 	var/has_custom_desc = 0
 	var/unique_name 
-	var/unique_desc
-	
-	if(!has_custom_name)
-		name = "Ominous voidsuit control module"		
-	else
-		name = unique_name
-	if(!has_custom_desc)
-		desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for assassins."
-	else
-		desc = unique_desc		
+	var/unique_desc		
 	
 	suit_type = "ominous"
 	icon_state = "ninja_rig"
@@ -128,6 +119,17 @@
 	)
 
 	..()
+
+/obj/item/weapon/rig/light/ninja/new()
+	if(!has_custom_name)
+		name = "Ominous voidsuit control module"		
+	else
+		name = unique_name
+	if(!has_custom_desc)
+		desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for assassins."
+	else
+		desc = unique_desc	
+	..()
 	
 /obj/item/clothing/gloves/rig/light/ninja/verb/rename_suit()
 	set name = "Name Ninja Suit"
@@ -160,6 +162,7 @@
 		to_chat(M, "Suit description succesful!")
 		return 1
 	has_custom_desc = 1
+
 
 	
 /obj/item/clothing/gloves/rig/light/ninja
