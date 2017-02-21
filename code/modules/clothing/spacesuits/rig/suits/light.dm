@@ -82,8 +82,8 @@
 /obj/item/weapon/rig/light/ninja
 	var/has_custom_name = 0
 	var/has_custom_desc = 0
-	var/ninja/unique_name 
-	var/ninja/unique_desc
+	var/unique_name 
+	var/unique_desc
 	
 	if(!has_custom_name)
 		name = "Ominous voidsuit control module"		
@@ -129,7 +129,7 @@
 
 	..()
 	
-/obj/item/clothing/gloves/rig/light/ninja/verb/rename_suit
+/obj/item/clothing/gloves/rig/light/ninja/verb/rename_suit()
 	set name = "Name Ninja Suit"
 	set desc = "Rename your black voidsuit."
 	set category = "Object"
@@ -146,7 +146,7 @@
 		return 1
 	has_custom_name = 1
 	
-/obj/item/clothing/gloves/rig/light/ninja/verb/rewrite_suit_desc
+/obj/item/clothing/gloves/rig/light/ninja/verb/rewrite_suit_desc()
 	set name = "Describe Ninja suit"
 	set desc = "Give your voidsuit a custom description."
 	set category = "Object"
@@ -160,7 +160,6 @@
 		to_chat(M, "Suit description succesful!")
 		return 1
 	has_custom_desc = 1
-	
 
 	
 /obj/item/clothing/gloves/rig/light/ninja
