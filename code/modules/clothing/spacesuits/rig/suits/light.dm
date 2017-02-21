@@ -80,11 +80,6 @@
 	siemens_coefficient = 0
 
 /obj/item/weapon/rig/light/ninja
-	var/has_custom_name = 0
-	var/has_custom_desc = 0
-	var/unique_name 
-	var/unique_desc		
-	
 	suit_type = "ominous"
 	icon_state = "ninja_rig"
 	armor = list(melee = 50, bullet = 15, laser = 30, energy = 10, bomb = 25, bio = 100, rad = 30)
@@ -120,7 +115,11 @@
 
 	..()
 
-/obj/item/weapon/rig/light/ninja/new()
+/obj/item/weapon/rig/light/ninja/New()
+	var/has_custom_name = 0
+	var/has_custom_desc = 0
+	var/unique_name 
+	var/unique_desc	
 	if(!has_custom_name)
 		name = "Ominous voidsuit control module"		
 	else
