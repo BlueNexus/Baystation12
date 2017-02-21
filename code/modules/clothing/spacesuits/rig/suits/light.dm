@@ -80,18 +80,21 @@
 	siemens_coefficient = 0
 
 /obj/item/weapon/rig/light/ninja
-	var/has_custom_name = FALSE_NAME
-	var/has_custom_desc = FALSE_DESC
+	var/has_custom_name = N
+	N = 0
+	var/has_custom_desc = D
+	D = 0
 	var/ninja/unique_name 
 	var/ninja/unique_desc
 	
-	if(has_custom_name = FALSE_NAME)
+	
+	if(N is 0)
 		name = "Ominous voidsuit control module"
 		
 	else
 		name = unique_name
 
-	if(has_custom_desc = FALSE_DESC)
+	if(D is 0)
 		desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for assassins."
 	else
 		desc = unique_desc
@@ -140,13 +143,14 @@
 	if(M.incapacitated()) return 0
 	if(!(access_syndicate in M.access)) return 0
 	var/input = sanitizeSafe(input("What do you want to name your suit?", "Rename suit"), MAX_NAME_LEN)
-	If(src && input && !M.incapacitated() && in_range(M,src))
+	if(src && input && !M.incapacitated() && in_range(M,src))
 		if(!findtext(input, "the", 1, 4))
 			input = "\improper [input]"
 		unique_name = input
 		to_chat(M, "Suit naming succesful!")
 		return 1
-	obj/item/clothing/gloves/rig/light/ninja/has_custom_name = TRUE_NAME
+	obj/item/clothing/gloves/rig/light/ninja/has_custom_name = N
+		return 1
 	
 /obj/item/clothing/gloves/rig/light/ninja/verb/rewrite_suit_desc
 	set name = "Describe Ninja suit"
@@ -157,11 +161,14 @@
 	if(M.incapacitated()) return 0
 	if(!(access_syndicate in M.access)) return 0
 	var/input = sanitizeSafe(input("What is your voidsuit? ", "write description"), MAX_DESC_LEN)
-	If(src && input && !M.incapacitated() && in_range(M,src))
+	if(src && input && !M.incapacitated() && in_range(M,src))
 		unique_desc = input
 		to_chat(M, "Suit description succesful!")
 		return 1
-	obj/item/clothing/gloves/rig/light/ninja/has_custom_desc = TRUE_DESC
+	obj/item/clothing/gloves/rig/light/ninja/has_custom_desc = D
+		return 1
+	
+
 	
 /obj/item/clothing/gloves/rig/light/ninja
 	name = "insulated gloves"
