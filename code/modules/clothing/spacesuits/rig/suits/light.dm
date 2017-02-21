@@ -80,9 +80,23 @@
 	siemens_coefficient = 0
 
 /obj/item/weapon/rig/light/ninja
-	name = "ominous suit control module"
+	var/has_custom_name = FALSE_NAME
+	var/has_custom_desc = FALSE_DESC
+	var/ninja/unique_name 
+	var/ninja/unique_desc
+	
+	if(has_custom_name = FALSE_NAME)
+		name = "Ominous voidsuit control module"
+		
+	else
+		name = unique_name
+
+	if(has_custom_desc = FALSE_DESC)
+		desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for assassins."
+	else
+		desc = unique_desc
+		
 	suit_type = "ominous"
-	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
 	icon_state = "ninja_rig"
 	armor = list(melee = 50, bullet = 15, laser = 30, energy = 10, bomb = 25, bio = 100, rad = 30)
 	siemens_coefficient = 0.2 //heavy hardsuit level shock protection
@@ -116,7 +130,39 @@
 	)
 
 	..()
-
+	
+/obj/item/clothing/gloves/rig/light/ninja/verb/rename_suit
+	set name = "Name Ninja Suit"
+	set desc = "Rename your black voidsuit."
+	set category = "Object"
+	var/mob/M = usr
+	if(!M.mind) return 0
+	if(M.incapacitated()) return 0
+	if(!(access_syndicate in M.access)) return 0
+	var/input = sanitizeSafe(input("What do you want to name your suit?", "Rename suit"), MAX_NAME_LEN)
+	If(src && input && !M.incapacitated() && in_range(M,src))
+		if(!findtext(input, "the", 1, 4))
+			input = "\improper [input]"
+		unique_name = input
+		to_chat(M, "Suit naming succesful!")
+		return 1
+	obj/item/clothing/gloves/rig/light/ninja/has_custom_name = TRUE_NAME
+	
+/obj/item/clothing/gloves/rig/light/ninja/verb/rewrite_suit_desc
+	set name = "Describe Ninja suit"
+	set desc = "Give your voidsuit a custom description."
+	set category = "Object"
+	var/mob/M = usr
+	if(!M.mind) return 0
+	if(M.incapacitated()) return 0
+	if(!(access_syndicate in M.access)) return 0
+	var/input = sanitizeSafe(input("What is your voidsuit? ", "write description"), MAX_DESC_LEN)
+	If(src && input && !M.incapacitated() && in_range(M,src))
+		unique_desc = input
+		to_chat(M, "Suit description succesful!")
+		return 1
+	obj/item/clothing/gloves/rig/light/ninja/has_custom_desc = TRUE_DESC
+	
 /obj/item/clothing/gloves/rig/light/ninja
 	name = "insulated gloves"
 	siemens_coefficient = 0
