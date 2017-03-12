@@ -621,6 +621,11 @@
 	name = "mining site"
 	icon_state = "shuttlered"
 
+/area/guppy_hangar/away
+	name = "away site"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/floor/asteroid
+
 /area/guppy_hangar/transit
 	name = "transit"
 	icon_state = "shuttle"
@@ -1368,3 +1373,22 @@
 /area/aux_eva
 	name = "\improper Auxiliary EVA Storage"
 	icon_state = "eva"
+
+/area/thruster
+	icon_state = "thruster"
+
+/area/thruster/d1port
+	name = "\improper First Deck Port Nacelle"
+
+/area/thruster/d1starboard
+	name = "\improper First Deck Starboard Nacelle"
+
+/area/thruster/d3port
+	name = "\improper Third Deck Port Nacelle"
+
+/area/thruster/d3starboard
+	name = "\improper Third Deck Starboard Nacelle"
+
+/area/engineering/fuelbay
+	name = "\improper Fuel Bay"
+	icon_state = "engineering"
