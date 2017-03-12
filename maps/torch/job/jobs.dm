@@ -1,6 +1,6 @@
 /datum/map/torch
 	allowed_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/rd, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/hos,
-						/datum/job/liaison, /datum/job/representative, /datum/job/sea, /datum/job/bridgeofficer,
+						/datum/job/liaison, /datum/job/representative, /datum/job/sea, /datum/job/bridgeofficer, /datum/job/helmsman,
 						/datum/job/senior_engineer, /datum/job/engineer, /datum/job/engineer_contractor, /datum/job/roboticist,
 						/datum/job/officer, /datum/job/warden, /datum/job/detective,
 						/datum/job/senior_doctor, /datum/job/doctor, /datum/job/doctor_contractor,
@@ -295,6 +295,35 @@
 	minimal_access = list(access_security, access_medical, access_engine, access_maint_tunnels, access_emergency_storage,
 			            access_heads, access_janitor, access_kitchen, access_cargo, access_RC_announce, access_keycard_auth,
 			            access_solgov_crew)
+
+/datum/job/helmsman
+	title = "Helmsman"
+	department = "Support"
+	department_flag = COM
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Commanding Officer"
+	selection_color = "#515151"
+	minimal_player_age = 5
+	economic_modifier = 7
+	ideal_character_age = 40
+	outfit_type = /decl/hierarchy/outfit/job/torch/crew/command/helmsman
+	allowed_branches = list(
+		/datum/mil_branch/expeditionary_corps,
+		/datum/mil_branch/fleet = /decl/hierarchy/outfit/job/torch/crew/command/helmsman/fleet,
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/fleet/o2,
+		/datum/mil_rank/fleet/o1,
+	)
+
+
+	access = list(access_maint_tunnels, access_external_airlocks, access_emergency_storage, access_solgov_crew,access_aquila,
+						access_calypso, access_guppy, access_hangar, access_solgov_crew, access_heads)
+	minimal_access = list(access_maint_tunnels, access_external_airlocks, access_emergency_storage, access_solgov_crew,access_aquila,
+						access_calypso, access_guppy, access_hangar, access_solgov_crew, access_heads)
+
 
 /datum/job/senior_engineer
 	title = "Senior Engineer"

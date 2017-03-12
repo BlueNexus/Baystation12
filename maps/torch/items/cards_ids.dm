@@ -163,6 +163,9 @@
 /obj/item/weapon/card/id/torch/passenger/research/liaison
 	job_access_type = /datum/job/liaison
 
+/obj/item/weapon/card/id/torch/crew/helmsman
+	job_access_type = /datum/job/helmsman
+
 //Merchant
 /obj/item/weapon/card/id/torch/merchant
 	desc = "An identification card issued to Merchants, indicating their right to sell and buy goods."

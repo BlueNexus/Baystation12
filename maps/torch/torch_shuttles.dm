@@ -1,3 +1,4 @@
+/* //In case we ever decide against overmap
 /obj/machinery/computer/shuttle_control/multi/calypso
 	name = "calypso control console"
 	icon_keyboard = "rd_key"
@@ -18,6 +19,7 @@
 	icon_screen = "shuttle"
 	req_access = list(access_aquila_helm)
 	shuttle_tag = "Aquila"
+*/
 
 //Torch Large Pods
 
@@ -168,6 +170,7 @@
 	transit_direction = SOUTH
 
 //Calypso.
+/*
 /datum/shuttle/multi_shuttle/calypso
 	name = "Calypso"
 	warmup_time = 0
@@ -234,6 +237,7 @@
 	announcer = "SEV Torch Docking Computer"
 	arrival_message = "Attention, SFV Aquila returning. Clear the landing area."
 	departure_message = "Attention, SFV Aquila departing. Clear the landing area."
+*/
 
 //Petrov
 

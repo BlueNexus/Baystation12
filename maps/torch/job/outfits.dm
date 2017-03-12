@@ -219,6 +219,21 @@ Keeping them simple for now, just spawning with basic EC uniforms, and pretty mu
 	head = /obj/item/clothing/head/utility/marine
 	shoes = /obj/item/clothing/shoes/jungleboots
 
+/decl/hierarchy/outfit/job/torch/crew/command/helmsman //until they get a better uniform
+	name = OUTFIT_JOB_NAME("Helmsman")
+	uniform = /obj/item/clothing/under/utility/expeditionary/pilot
+	shoes = /obj/item/clothing/shoes/dutyboots
+	head = /obj/item/clothing/head/soft/sol/expedition
+	id_type = /obj/item/weapon/card/id/torch/crew/helmsman
+	pda_type = /obj/item/device/pda
+	l_ear = /obj/item/device/radio/headset/headset_com
+
+/decl/hierarchy/outfit/job/torch/crew/command/helmsman/fleet
+	name = OUTFIT_JOB_NAME("Helmsman - Fleet")
+	uniform = /obj/item/clothing/under/utility/fleet/pilot
+	head = /obj/item/clothing/head/utility/fleet
+	shoes = /obj/item/clothing/shoes/dutyboots
+
 //Engineering Outfits
 
 /decl/hierarchy/outfit/job/torch/crew/engineering
