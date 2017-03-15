@@ -83,5 +83,10 @@
 	var/area/overmap/A = new
 	A.contents.Add(turfs)
 	testing("Overmap created at Z[using_map.overmap_z].")
+	var/datum/overmap_event_controller/OEC = new()
+	if(using_map.overmap_event_areas)
+		for(var/event in 1 to using_map.overmap_event_areas)
+			var/obj/effect/overmap/event/E = pick(subtypesof(/obj/effect/overmap/event))
+			OEC.distribute(E)
 	return 1
 
