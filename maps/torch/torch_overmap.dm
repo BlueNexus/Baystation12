@@ -2,6 +2,7 @@
 	name = "SEV Torch"
 	fore_dir = WEST
 	vessel_mass = 1000
+	default_delay = 12 SECONDS
 	landing_areas = list(/area/aquila_hangar/start, /area/calypso_hangar/start, /area/guppy_hangar/start,
 						 /area/aquila_hangar/fourthdeck, /area/calypso_hangar/fourthdeck, /area/guppy_hangar/fourthdeck,
 						 /area/aquila_hangar/thirddeck, /area/calypso_hangar/thirddeck, /area/guppy_hangar/thirddeck,
