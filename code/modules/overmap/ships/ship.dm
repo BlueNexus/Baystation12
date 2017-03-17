@@ -11,6 +11,7 @@
 
 	var/obj/machinery/computer/helm/nav_control
 	var/list/engines = list()
+	var/list/current_events = list()
 
 /obj/effect/overmap/ship/initialize()
 	..()
@@ -107,6 +108,25 @@
 		if(newloc)
 			Move(newloc)
 		update_icon()
+		var/turf/t = loc
+		if(t.contents)
+			var/obj/effect/overmap/event/E = locate() in t
+			if(istype(E))
+				var/valid = 1
+				for(var/obj/effect/overmap/event/Eve in current_events)
+					if(istype(E, Eve.type))
+						valid = 0
+				if(valid)
+					current_events.Add(E)
+					E.trigger()
+		if(current_events)
+			var/obj/effect/overmap/event/E = locate() in t
+			for(var/obj/effect/overmap/event/Ev in current_events)
+				if(!(istype(E, Ev.type)))
+					Ev.leave()
+					current_events.Remove(Ev)
+
+
 
 /obj/effect/overmap/ship/update_icon()
 	if(!is_still())

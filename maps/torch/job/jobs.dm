@@ -314,8 +314,9 @@
 		/datum/mil_branch/fleet = /decl/hierarchy/outfit/job/torch/crew/command/helmsman/fleet,
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/fleet/o2,
-		/datum/mil_rank/fleet/o1,
+		/datum/mil_rank/fleet/e5,
+		/datum/mil_rank/fleet/e6,
+		/datum/mil_rank/fleet/e7,
 	)
 
 
