@@ -70,7 +70,6 @@
 /datum/overmap_event_controller
 
 /datum/overmap_event_controller/proc/distribute(var/obj/effect/overmap/event/E)
-	var/list/checked_cache = list()
 	var/frustration = 0
 	var/start_x = rand(OVERMAP_EDGE, using_map.overmap_size - OVERMAP_EDGE)
 	var/start_y = rand(OVERMAP_EDGE, using_map.overmap_size - OVERMAP_EDGE)
@@ -80,29 +79,23 @@
 	for(var/attempt in 1 to Ev.count)
 		frustration = 0
 		var/valid = 1
-		work_range = Ev.radius
-		var/turf/target_turf = null
+		var/target_x
+		var/target_y
 		do
-			var/list/possible_choices = trange(work_range, Ev)
-			possible_choices -= checked_cache
-			if(possible_choices.len)
-				valid = 1
-
-				target_turf = pick(possible_choices)
-				if(istype(target_turf))
-					for(var/item in target_turf.contents)
-						if(istype(item, /obj/effect/overmap/event))
-							valid = 0
-							break
-				if(!valid)
-					frustration++
-				if(frustration > 3)
-					work_range++
-					frustration = 0
-				checked_cache.Add(target_turf)
-			else
+			valid = 1
+			target_x = rand(start_x - work_range, start_x + work_range)
+			target_y = rand(start_y - work_range, start_y + work_range)
+			var/turf/target_turf = locate(target_x, target_y, using_map.overmap_z)
+			if(istype(target_turf))
+				for(var/item in target_turf.contents)
+					if(istype(item, /obj/effect/overmap/event))
+						valid = 0
+						break
+			if(!valid)
+				frustration++
+			if(frustration > 3)
 				work_range++
 				frustration = 0
 
 		while(!valid)
-		new E(target_turf)
+		new E(locate(1, 1, 1), target_x, target_y)
