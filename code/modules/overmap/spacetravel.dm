@@ -98,10 +98,6 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 			var/mob/D = A
 			if(D.pulling)
 				D.pulling.forceMove(dest)
-		else
-			var/obj/effect/overmap/event/E
-			if(E in dest.contents)
-				E.trigger()
 
 	if(istype(M, /obj/effect/overmap/sector/temporary))
 		var/obj/effect/overmap/sector/temporary/source = M

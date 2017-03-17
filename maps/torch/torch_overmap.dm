@@ -13,7 +13,7 @@
 /obj/effect/overmap/sector/cluster
 	name = "asteroid cluster"
 	desc = "Large group of asteroids. Mineral content detected."
-	icon_state = "meteor1"
+	icon_state = "sector"
 
 
 	landing_areas = list(/area/aquila_hangar/mining, /area/calypso_hangar/mining, /area/guppy_hangar/mining)
