@@ -86,8 +86,12 @@
 	if(using_map.overmap_event_areas)
 		for(var/event in 1 to using_map.overmap_event_areas)
 			var/obj/effect/overmap/event/E = pick(subtypesof(/obj/effect/overmap/event))
-			for(var/attempt in 1 to E.count)
+			var/start_x = rand(OVERMAP_EDGE, using_map.overmap_size - OVERMAP_EDGE)
+			var/start_y = rand(OVERMAP_EDGE, using_map.overmap_size - OVERMAP_EDGE)
+			var/obj/effect/overmap/event/Ev = new E(locate(1, 1, 1), start_x, start_y)
+			for(var/attempt in 2 to Ev.count)
 				new E(locate(1, 1, 1))
+
 
 	return 1
 

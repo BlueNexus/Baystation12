@@ -39,6 +39,9 @@
 		active_event = new linked_event(EM)
 		active_event.startWhen = 0
 		active_event.endWhen = 999
+		if(istype(linked_event, /datum/event/meteor_wave))
+			var/datum/event/meteor_wave/MW = linked_event
+			MW.next_meteor = 0
 
 /obj/effect/overmap/event/proc/leave()
 	if(active_event)
