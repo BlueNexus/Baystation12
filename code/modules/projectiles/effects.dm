@@ -35,6 +35,13 @@
 	icon_state = "impact_laser"
 
 //----------------------------
+// Crescent
+//----------------------------
+
+obj/effect/projectile/laser/crescent/tracer
+	icon_s
+
+//----------------------------
 // Blue laser beam
 //----------------------------
 /obj/effect/projectile/laser_blue/tracer
