@@ -19,15 +19,15 @@
 
 	switch(states.len)
 		if(0 to (STATE_COUNT_NORMAL - 1))
-			var/cont = alert(usr, "Too few states: [states.len],  expected [STATE_COUNT_NORMAL] (Non-Diagonal) or [STATE_COUNT_DIAGONAL] (Diagonal), Continue?", "Unexpected Amount of States", "Yes", "No")
+			var/cont = alert(usr, "Too few states: [states.len],  expected [STATE_COUNT_NORMAL], Continue?", "Unexpected Amount of States", "Yes", "No")
 			if(cont == "No")
 				return
 		if(STATE_COUNT_NORMAL)
 			world << "4 States, running in Non-Diagonal mode"
-		if(STATE_COUNT_DIAGONAL)
-			world << "5 States, running in Diagonal mode"
-		if((STATE_COUNT_DIAGONAL + 1) to A_BIG_NUMBER)
-			var/cont = alert(usr, "Too many states: [states.len],  expected [STATE_COUNT_NORMAL] (Non-Diagonal) or [STATE_COUNT_DIAGONAL] (Diagonal), Continue?", "Unexpected Amount of States", "Yes", "No")
+		//if(STATE_COUNT_DIAGONAL)
+		//	world << "5 States, running in Diagonal mode"
+		if((STATE_COUNT_NORMAL + 1) to A_BIG_NUMBER)
+			var/cont = alert(usr, "Too many states: [states.len],  expected [STATE_COUNT_NORMAL], Continue?", "Unexpected Amount of States", "Yes", "No")
 			if(cont == "No")
 				return
 
@@ -37,6 +37,10 @@
 	var/filename = "[copytext("[dmifile]", 1, -4)]-smooth.dmi"
 	fdel(filename) //force refresh
 
+	var/base_state = input("Enter the base state's name. ('metal1' 'metal2' etc)") as null|text
+	if(!base_state)
+		base_state = ""
+
 	for(var/state in states)
 		var/statename = lowertext(state)
 		outputIcon = icon(filename) //open the icon again each iteration, to work around byond memory limits
@@ -44,122 +48,136 @@
 		switch(statename)
 			if("box")
 				var/icon/box = icon(sourceIcon, state)
-
+				var/icon/alldirs = new()
 				var/icon/corner1i = icon(box)
 				corner1i.DrawBox(null, 1, 1, 32, 16)
 				corner1i.DrawBox(null, 17, 1, 32, 32)
-				outputIcon.Insert(corner1i, "1-i")
+				alldirs.Insert(corner1i, statename, 1)
 
 				var/icon/corner2i = icon(box)
 				corner2i.DrawBox(null, 1, 1, 16, 32)
 				corner2i.DrawBox(null, 17, 1, 32, 16)
-				outputIcon.Insert(corner2i, "2-i")
+				alldirs.Insert(corner2i, statename, 4)
 
 				var/icon/corner3i = icon(box)
 				corner3i.DrawBox(null, 1, 32, 32, 17)
 				corner3i.DrawBox(null, 17, 32, 32, 1)
-				outputIcon.Insert(corner3i, "3-i")
+				alldirs.Insert(corner3i, statename, 8)
 
 				var/icon/corner4i = icon(box)
 				corner4i.DrawBox(null, 1, 1, 16, 32)
 				corner4i.DrawBox(null, 17, 17, 32, 32)
-				outputIcon.Insert(corner4i, "4-i")
+				alldirs.Insert(corner4i, statename, 2)
+				outputIcon.Insert(alldirs, "[base_state]0")
+				outputIcon.Insert(alldirs, "[base_state]2")
 
 				world << "Box: \icon[box] -> \icon[corner1i] \icon[corner2i] \icon[corner3i] \icon[corner4i]"
 
 			if("line")
 				var/icon/line = icon(sourceIcon, state)
+				var/icon/alldirs = new()
 
 				//Vertical
 				var/icon/line1n = icon(line)
 				line1n.DrawBox(null, 1, 1, 32, 16)
 				line1n.DrawBox(null, 17, 1, 32, 32)
-				outputIcon.Insert(line1n, "1-n")
+				alldirs.Insert(line1n, statename, 1)
 
 				var/icon/line2n = icon(line)
 				line2n.DrawBox(null, 1, 1, 16, 32)
 				line2n.DrawBox(null, 17, 1, 32, 16)
-				outputIcon.Insert(line2n, "2-n")
+				alldirs.Insert(line2n, statename, 4)
 
 				var/icon/line3s = icon(line)
 				line3s.DrawBox(null, 1, 32, 32, 17)
 				line3s.DrawBox(null, 17, 32, 32, 1)
-				outputIcon.Insert(line3s, "3-s")
+				alldirs.Insert(line3s, statename, 8)
 
 				var/icon/line4s = icon(line)
 				line4s.DrawBox(null, 1, 1, 16, 32)
 				line4s.DrawBox(null, 17, 17, 32, 32)
-				outputIcon.Insert(line4s, "4-s")
+				alldirs.Insert(line4s, statename, 2)
+				outputIcon.Insert(alldirs, "[base_state]4")
+				outputIcon.Insert(alldirs, "[base_state]6")
 
 				//Horizontal
 				var/icon/line1w = icon(line3s) //Correct
 				line1w.Turn(90)
-				outputIcon.Insert(line1w, "1-w")
+				alldirs.Insert(line1w, statename, 1)
 
 				var/icon/line2e = icon(line1n)
 				line2e.Turn(90)
-				outputIcon.Insert(line2e, "2-e")
+				alldirs.Insert(line2e, statename, 4)
 
 				var/icon/line3w = icon(line4s)
 				line3w.Turn(90)
-				outputIcon.Insert(line3w, "3-w")
+				alldirs.Insert(line3w, statename, 8)
 
 				var/icon/line4e = icon(line2n)
 				line4e.Turn(90)
-				outputIcon.Insert(line4e, "4-e")
+				alldirs.Insert(line4e, statename, 2)
+				outputIcon.Insert(alldirs, "[base_state]1")
+				outputIcon.Insert(alldirs, "[base_state]3")
+
 
 				world << "Line: \icon[line] -> \icon[line1n] \icon[line2n] \icon[line3s] \icon[line4s] \icon[line1w] \icon[line2e] \icon[line3w] \icon[line4e]"
 
 			if("center_4")
 				var/icon/center4 = icon(sourceIcon, state)
+				var/icon/alldirs = new()
 
 				var/icon/corner1nw = icon(center4)
 				corner1nw.DrawBox(null, 1, 1, 32, 16)
 				corner1nw.DrawBox(null, 17, 1, 32, 32)
-				outputIcon.Insert(corner1nw, "1-nw")
+				alldirs.Insert(corner1nw, statename, 1)
 
 				var/icon/corner2ne = icon(center4)
 				corner2ne.DrawBox(null, 1, 1, 16, 32)
 				corner2ne.DrawBox(null, 17, 1, 32, 16)
-				outputIcon.Insert(corner2ne, "2-ne")
+				alldirs.Insert(corner2ne, statename, 4)
 
 				var/icon/corner3sw = icon(center4)
 				corner3sw.DrawBox(null, 1, 32, 32, 17)
 				corner3sw.DrawBox(null, 17, 32, 32, 1)
-				outputIcon.Insert(corner3sw, "3-sw")
+				alldirs.Insert(corner3sw, statename, 8)
 
 				var/icon/corner4se = icon(center4)
 				corner4se.DrawBox(null, 1, 1, 16, 32)
 				corner4se.DrawBox(null, 17, 17, 32, 32)
-				outputIcon.Insert(corner4se, "4-se")
+				alldirs.Insert(corner4se, statename, 2)
+				outputIcon.Insert(alldirs, "[base_state]5")
 
 				world << "Center4: \icon[center4] -> \icon[corner1nw] \icon[corner2ne] \icon[corner3sw] \icon[corner4se]"
 
 			if("center_8")
 				var/icon/center8 = icon(sourceIcon, state)
+				var/icon/alldirs = new()
+
 
 				var/icon/corner1f = icon(center8)
 				corner1f.DrawBox(null, 1, 1, 32, 16)
 				corner1f.DrawBox(null, 17, 1, 32, 32)
-				outputIcon.Insert(corner1f, "1-f")
+				alldirs.Insert(corner1f, statename, 1)
 
 				var/icon/corner2f = icon(center8)
 				corner2f.DrawBox(null, 1, 1, 16, 32)
 				corner2f.DrawBox(null, 17, 1, 32, 16)
-				outputIcon.Insert(corner2f, "2-f")
+				alldirs.Insert(corner2f, statename, 4)
 
 				var/icon/corner3f = icon(center8)
 				corner3f.DrawBox(null, 1, 32, 32, 17)
 				corner3f.DrawBox(null, 17, 32, 32, 1)
-				outputIcon.Insert(corner3f, "3-f")
+				alldirs.Insert(corner3f, statename, 8)
 
 				var/icon/corner4f = icon(center8)
 				corner4f.DrawBox(null, 1, 1, 16, 32)
 				corner4f.DrawBox(null, 17, 17, 32, 32)
-				outputIcon.Insert(corner4f, "4-f")
+				alldirs.Insert(corner4f, statename, 2)
+				outputIcon.Insert(alldirs, "[base_state]7")
 
 				world << "Center8: \icon[center8] -> \icon[corner1f] \icon[corner2f] \icon[corner3f] \icon[corner4f]"
 
+/*
 			if("diag")
 				var/icon/diag = icon(sourceIcon, state)
 
@@ -220,7 +238,7 @@
 
 				world << "Diag_Corner_B: \icon[diag_corner_b] -> \icon[diagse1] \icon[diagsw1] \icon[diagne1] \icon[diagnw1]"
 
-
+*/
 
 		fcopy(outputIcon, filename)	//Update output icon each iteration
 	world << "Finished [filename]!"
