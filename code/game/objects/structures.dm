@@ -48,6 +48,9 @@
 	..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
+	if(prob(0.5))
+		new /mob/living/simple_animal/hostile/mimic(null, src, null)
+		qdel(src)
 
 /obj/structure/Destroy()
 	..()
