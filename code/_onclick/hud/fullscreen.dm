@@ -101,6 +101,18 @@
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
 
+/obj/screen/fullscreen/flash/red
+	icon = 'icons/mob/screen1.dmi'
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	icon_state = "flash"
+	color = "red"
+
+/obj/screen/fullscreen/flash/blue
+	icon = 'icons/mob/screen1.dmi'
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	icon_state = "flash"
+	color = "blue"
+
 /obj/screen/fullscreen/flash/noise
 	icon_state = "noise"
 
