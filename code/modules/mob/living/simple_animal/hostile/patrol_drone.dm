@@ -175,18 +175,56 @@
 
 /mob/living/simple_animal/hostile/patrol_drone/locust/New()
 	..()
-	return
+	new src(src.loc)
+	new src(src.loc)
 	//Make this spawn two more
 
 /mob/living/simple_animal/hostile/patrol_drone/rocket
-	icon_state = "syndrome_interceptor_m"
+	icon_state = "syndrone_interceptor_m"
 	icon_living = "syndrone_interceptor_m"
 	projectiletype = /obj/item/projectile/bullet/gyro
 	attack_delay = DEFAULT_ATTACK_COOLDOWN * 2
 	break_stuff_probability = 100
+	environment_smash = 1
 
-/mob/living/simple_animal/hostile/patrol_drone/rocket/ListTargets()
-		return null //Doesn't care about people, just the hull
+/mov/living/simple_animal/hostile/patrol_drone/flea
+	icon_state = "syndrone_flea"
+	icon_living = "syndrone_flea"
+	ranged = 0
+	health = 200
+	maxHealth = 200
+	speed = 5
+	break_stuff_probability = 100
+	melee_damage_lower = 25
+	melee_damage_upper = 35
+	environment_smash = 2
+
+/mob/living/simple_animal/hostile/patrol_drone/flea/ListTargets(var/dist = 25)
+	var/list/L = hearers(src, dist)
+
+	for (var/obj/mecha/M in mechas_list)
+		if (M.z == src.z && get_dist(src, M) <= dist)
+			L += M
+
+	return L
+
+
+/mob/living/simple_animal/hostile/patrol_drone/flea/DestroySurroundings()
+	if(prob(break_stuff_probability))
+		for(var/dir in cardinal) // North, South, East, West
+			var/obj/effect/shield/S = locate(/obj/effect/shield, get_step(src, dir))
+			if(S && S.gen && S.gen.check_flag(MODEFLAG_NONHUMANS))
+				S.attack_generic(src,rand(melee_damage_lower,melee_damage_upper,environment_smash),attacktext)
+				return
+			for(var/obj/structure/window/obstacle in get_step(src, dir))
+				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
+					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper,environment_smash),attacktext)
+					return
+			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
+			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
+				obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper,environment_smash),attacktext)
+			var/turf/simulated/wall/W = get_step(src, dir)
+				W.attack_generic(src,rand(melee_damage_lower,melee_damage_upper,environment_smash),attacktext)
 
 /obj/item/projectile/beam/drone/patrol //General-purpose
 	damage = 25
