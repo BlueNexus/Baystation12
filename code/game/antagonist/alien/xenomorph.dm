@@ -1,10 +1,10 @@
 var/datum/antagonist/xenos/xenomorphs
 
 /datum/antagonist/xenos
-	id = MODE_XENOMORPH
-	role_text = "Xenomorph"
-	role_text_plural = "Xenomorphs"
-	mob_path = /mob/living/carbon/alien/larva
+	id = MODE_BROOD
+	role_text = "Broodling"
+	role_text_plural = "Broodlings"
+	mob_path = /mob/living/carbon/broodling
 	flags = ANTAG_OVERRIDE_MOB | ANTAG_RANDSPAWN | ANTAG_OVERRIDE_JOB | ANTAG_VOTABLE
 	welcome_text = "Hiss! You are a larval alien. Hide and bide your time until you are ready to evolve."
 	antaghud_indicator = "hudalien"

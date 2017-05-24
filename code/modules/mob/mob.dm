@@ -811,12 +811,13 @@
 	sleeping = max(max(sleeping,amount),0)
 	return
 
-/mob/proc/SetSleeping(amount)
-	sleeping = max(amount,0)
+/mob/proc/SetSleeping(amount, override = 0, lock = 0)
+	sleeping = (sleep_locked && !override) ? sleeping : max(amount,0)
+	sleep_locked = lock //Doesn't matter what's passed here, it'll be true or false either way.
 	return
 
-/mob/proc/AdjustSleeping(amount)
-	sleeping = max(sleeping + amount,0)
+/mob/proc/AdjustSleeping(amount, override = 0)
+	sleeping = (sleep_locked && !override) ? (sleeping) : max(sleeping + amount,0)
 	return
 
 /mob/proc/Resting(amount)

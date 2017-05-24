@@ -142,7 +142,7 @@ datum/track/New(var/title_name, var/audio)
 			var/mob/living/carbon/human/H = M
 			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				continue
-		M.sleeping = 0
+		M.SetSleeping(0)
 		M.stuttering += 20
 		M.ear_deaf += 30
 		M.Weaken(3)

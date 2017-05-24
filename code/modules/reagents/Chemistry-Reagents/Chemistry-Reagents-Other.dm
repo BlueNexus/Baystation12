@@ -141,7 +141,7 @@
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.confused = 0
-	M.sleeping = 0
+	M.SetSleeping(0)
 	M.jitteriness = 0
 
 /datum/reagent/gold

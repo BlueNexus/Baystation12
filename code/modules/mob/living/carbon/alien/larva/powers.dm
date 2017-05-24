@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/larva/proc/check_can_infest(var/mob/living/M)
+/mob/living/carbon/broodling/larva/proc/check_can_infest(var/mob/living/M)
 	if(!src)
 		return 0
 	if(!istype(loc, /turf))
@@ -9,18 +9,18 @@
 		return 0
 	if(!M)
 		return 1
-	if(!M.lying)
-		to_chat(src, "<span class='danger'>\The [M] is not prone.</span>")
+	if(!(M.stat == DEAD))
+		to_chat(src, "<span class='danger'>\The [M] is still alive.</span>")
 		return 0
 	if(!(src.Adjacent(M)))
 		to_chat(src, "<span class='danger'>\The [M] is not in range.</span>")
 		return 0
 	return 1
 
-/mob/living/carbon/alien/larva/verb/attach_host()
+/mob/living/carbon/broodling/larva/verb/attach_host()
 
-	set name = "Attach to host"
-	set desc = "Burrow into a prone victim and begin drinking their blood."
+	set name = "Infest corpse"
+	set desc = "Burrow into a corpse, and take full control."
 	set category = "Abilities"
 
 	if(!check_can_infest())
@@ -30,7 +30,7 @@
 	for(var/mob/living/carbon/human/H in view(1,src))
 		if(isxenomorph(H))
 			continue
-		if(src.Adjacent(H) && H.lying)
+		if(src.Adjacent(H) && H.stat == DEAD)
 			choices += H
 
 	if(!choices.len)
@@ -41,7 +41,7 @@
 
 	if(!H || !src || !H.lying) return
 
-	visible_message("<span class='danger'>\The [src] begins questing blindly towards \the [H]'s warm flesh...</span>")
+	visible_message("<span class='danger'>\The [src] begins questing blindly towards \the [H]'s cold flesh...</span>")
 
 	if(!do_after(src,30, H))
 		return
@@ -50,13 +50,13 @@
 		return
 
 	var/obj/item/organ/external/E = pick(H.organs)
-	to_chat(src, "<span class='danger'>You burrow deeply into \the [H]'s [E.name]!</span>")
+	to_chat(src, "<span class='danger'>You burrow deeply into \the [H]'s [E.name], and take control!</span>")
 	var/obj/item/weapon/holder/holder = new (loc)
 	src.loc = holder
 	holder.name = src.name
 	E.embed(holder,0,"\The [src] burrows deeply into \the [H]'s [E.name]!")
 
-/mob/living/carbon/alien/larva/verb/release_host()
+/mob/living/carbon/broodling/larva/verb/release_host()
 	set category = "Abilities"
 	set name = "Release Host"
 	set desc = "Release your host."
@@ -85,7 +85,7 @@
 
 	leave_host()
 
-/mob/living/carbon/alien/larva/proc/leave_host()
+/mob/living/carbon/broodling/larva/proc/leave_host()
 	if(!loc || !loc.loc)
 		to_chat(src, "You are not inside a host.")
 		return

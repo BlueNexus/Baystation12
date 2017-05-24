@@ -1,13 +1,13 @@
 #define MIN_LARVA_BLOOD_DRINK 0.5
 
 //Larvae regenerate health and nutrition from plasma and alien weeds.
-/mob/living/carbon/alien/larva/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/carbon/broodling/larva/handle_environment(var/datum/gas_mixture/environment)
 
 	if(!environment) return
 
 	var/turf/T = get_turf(src)
 	var/obj/effect/plant/plant = locate() in T
-	if(environment.gas["phoron"] > 0 || (plant && plant.seed.type == /datum/seed/xenomorph))
+	if(environment.gas["phoron"] > 0 || (plant && plant.seed.type == /datum/seed/xenomorph)) //todoB
 		update_progression()
 		adjustBruteLoss(-1)
 		adjustFireLoss(-1)
@@ -16,7 +16,7 @@
 
 // Maybe not the -best- place but it's semiappropriate and fitting.
 // Drink the blood of your host!
-/mob/living/carbon/alien/larva/handle_chemicals_in_body()
+/mob/living/carbon/broodling/larva/handle_chemicals_in_body()
 	if(!loc)
 		return
 	if(!istype(loc, /obj/item/weapon/holder))

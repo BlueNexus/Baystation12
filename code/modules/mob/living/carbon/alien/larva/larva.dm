@@ -1,15 +1,17 @@
-/mob/living/carbon/alien/larva
-	name = "alien larva"
-	real_name = "alien larva"
-	adult_form = /mob/living/carbon/human
-	speak_emote = list("hisses")
+/mob/living/carbon/broodling/larva
+	name = "larva"
+	real_name = "larva"
+	adult_form = /mob/living/carbon/broodling/larva/corpser
+	speak_emote = list("hisses") //todoB
 	icon_state = "larva"
 	language = "Hivemind"
-	maxHealth = 25
-	health = 25
+	maxHealth = 35
+	health = 35
 
 /mob/living/carbon/alien/larva/New()
 	..()
-	add_language("Xenomorph") //Bonus language.
-	internal_organs |= new /obj/item/organ/internal/xenos/hivenode(src)
-	create_reagents(100)
+	add_language("Broodling") //Bonus language.
+	SetSleeping(60, lock = 1)
+
+/mob/living/carbon/alien/larva/corpser
+	name = "corpser"

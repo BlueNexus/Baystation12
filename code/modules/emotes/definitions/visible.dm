@@ -117,7 +117,7 @@
 
 /decl/emote/visible/faint/do_extra(var/mob/user)
 	if(istype(user) && user.sleeping <= 0)
-		user.sleeping += 10
+		user.AdjustSleeping(10)
 
 /decl/emote/visible/frown
 	key = "frown"

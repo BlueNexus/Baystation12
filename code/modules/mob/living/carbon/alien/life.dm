@@ -62,7 +62,9 @@
 			adjustHalLoss(-3)
 			if (mind)
 				if(mind.active && client != null)
-					sleeping = max(sleeping-1, 0)
+					AdjustSleeping(-1, 1)
+					if(sleeping <= 0) //todoB : Move to /mob/
+						sleep_locked = 0
 			blinded = 1
 			set_stat(UNCONSCIOUS)
 		else if(resting)

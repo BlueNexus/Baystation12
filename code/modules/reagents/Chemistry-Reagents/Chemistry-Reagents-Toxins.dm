@@ -96,7 +96,7 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
-	M.sleeping += 1
+	M.AdjustSleeping(1, 1)
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -336,7 +336,7 @@
 			M.Weaken(2)
 		M.drowsyness = max(M.drowsyness, 20)
 	else
-		M.sleeping = max(M.sleeping, 20)
+		M.Sleeping(20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 
@@ -365,7 +365,7 @@
 		M.Weaken(30)
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else
-		M.sleeping = max(M.sleeping, 30)
+		M.Sleeping(30)
 
 	if(dose > 1 * threshold)
 		M.adjustToxLoss(removed)

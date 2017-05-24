@@ -141,7 +141,7 @@
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 	if(effective_dose >= strength * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
-		M.sleeping  = max(M.sleeping, 30)
+		M.Sleeping(30)
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
@@ -421,7 +421,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/sulfur

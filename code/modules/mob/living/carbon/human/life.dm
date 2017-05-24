@@ -736,7 +736,7 @@
 				if (mind)
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
-						AdjustSleeping(-1)
+						AdjustSleeping(-1, 1)
 				if( prob(2) && health && !hal_crit )
 					spawn(0)
 						emote("snore")
@@ -765,7 +765,7 @@
 			drowsyness = max(0, drowsyness-1)
 			eye_blurry = max(2, eye_blurry)
 			if (prob(5))
-				sleeping += 1
+				AdjustSleeping(1, 1)
 				Paralyse(5)
 
 		confused = max(0, confused - 1)

@@ -1,3 +1,3 @@
 /mob/living/silicon/Login()
-	sleeping = 0
+	SetSleeping(0) //Won't wake up if sleep_locked (exploit prevention)
 	..()
