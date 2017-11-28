@@ -164,6 +164,19 @@
 			H.Weaken(10)
 		M.add_chemical_effect(CE_NOPULSE, 1)
 
+/datum/reagent/toxin/chloromydride
+	name = "Chloromydride"
+	description = "A simple and well-known poison, designed to be hard to detect and thoroughly lethal."
+	taste_mult = 0 //Silent
+	strength = 8
+	target_organ = BP_LIVER
+
+/datum/reagent/toxin/chloromydride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PAINKILLER, 150)
+	if(prob(REM))
+		to_chat(M, "<span class='warning'>You feel an unpleasant numbness in your lower body.</span>")
+	..()
+
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."

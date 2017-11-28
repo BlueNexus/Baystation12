@@ -440,6 +440,13 @@
 	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/acid/hydrochloric = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/chloromydride
+	name = "Chloromydride"
+	result = /datum/reagent/toxin/chloromydride
+	required_reagents = list(/datum/reagent/toxin/potassium_chloride = 3, /datum/reagent/tramadol/oxycodone = 1)
+	catalysts = list(/datum/reagent/toxin/phoron = 5)
+	result_amount = 2
+
 /datum/chemical_reaction/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	result = /datum/reagent/capsaicin/condensed
