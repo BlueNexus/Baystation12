@@ -29,7 +29,7 @@
 	var/cloaked = 0
 	var/mob/living/carbon/human/gripping = null
 	var/blood_per_tick = 4
-	var/health_per_tick = 0.75
+	var/health_per_tick = 0.7
 
 /mob/living/simple_animal/hostile/sarashen/New()
 	. = ..()
@@ -91,9 +91,15 @@
 			update_icon()
 			H.Weaken(3)
 			H.visible_message("<span class='danger'>\the [src] appears and latches onto \the [H], pulsating!</span>")
-			if(carried)
+			if(carried && !length(gripping.virus2))
 				carried.majormutate()
 				gripping.virus2.Add(carried)
 			stop_automated_movement = 1
 			src.loc = gripping.loc
 			return
+
+/mob/living/simple_animal/hostile/sarashen/swarm/New()
+	new/mob/living/simple_animal/hostile/sarashen(src.loc)
+	if(prob(75)) new/mob/living/simple_animal/hostile/sarashen(src.loc)
+	if(prob(50)) new/mob/living/simple_animal/hostile/sarashen(src.loc)
+	qdel(src)
