@@ -107,7 +107,7 @@
 	..()
 
 /obj/item/weapon/gun/projectile/automatic/wt550
-	name = "9mm machine pistol"
+	name = "9mm personal defense weapon"
 	desc = "The WT-550 Saber is a cheap self-defense weapon, mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
 	item_state = "wt550"
