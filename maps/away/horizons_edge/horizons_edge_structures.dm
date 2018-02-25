@@ -81,7 +81,7 @@ obj/structure/horizons_edge/endgame_button/attack_hand(mob/user as mob)
 		state = "active"
 		return
 	//point of no return
-	visible_message("<span class='warning'>You hear roaring sound from somewhere below. It may be too late to run already.</span>")
+	visible_message("<span class='warning'>You hear a roaring sound from somewhere below. It may already be too late to run.</span>")
 
 	state = "activated"
 	set_light(0.0)

@@ -117,6 +117,24 @@
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "event"
 	opacity = 1
+	var/can_process = 1
+
+/obj/effect/overmap_event/blackhole
+	name = "black hole"
+	var/pull_level = STAGE_ONE
+
+/obj/effect/overmap_event/blackhole/New()
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/overmap_event/blackhole/process()
+	if(can_process)
+		can_process = 0
+		spawn(-1) supermatter_pull(src, world.view, pull_level)
+		can_process = 1
+
+/obj/effect/overmap_event/blackhole/Bump(var/atom/A)
+	if(pull_level == SUPER_SINGULO)
+
 
 /datum/overmap_event
 	var/name = "map event"

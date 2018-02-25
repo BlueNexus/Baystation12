@@ -49,6 +49,20 @@
 		WDW.shatter()
 		GLOB.riddles_placeholders.Remove(WB)
 		qdel(WB)
+		command_announcement.Announce("Warning, gravitational anomaly detected forming within vessel range! Recalibrating systems, adjusting gravity generators to compensate. Reorienting Gravitational pull to direct “Forward” of the Torch. Reorienting Torch to point away. Engines engaging on full. Projected time to Point of No Return: five minutes. Please set a course to leave the gravity well of the anomaly before this time..", "Gravitational Anomaly")
+		for(var/area/A in world)
+			if(A.z in GLOB.using_map.station_levels)
+				A.gravitychange(0)
+
+		sleep(600)
+		var/obj/effect/overmap/sector/current_sector = null
+		for(var/obj/effect/overmap/O in map_sectors)
+			if(istype(O, /obj/effect/overmap/sector/horizons_edge)
+				current_sector = O
+		var/obj/effect/overmap_event/blackhole/BH = new/obj/effect/overmap_event/blackhole(get_turf(current_sector))
+		command_announcement.Announce("WARNING. automated sensors have detected that the gravitational anomaly's attraction gradient has increased to potentially dangerous levels. Estimated time until collapse: 250 seconds. Take immediate evasive action.", "Gravitational Anomaly")
+		sleep(2400)
+		BH.pull_level = SUPER_SINGULO
 
 //////////////////////////////////////////////////////////////////////////////////////////////////BASIC RIDDLE DEFINITION
 /obj/effect/horizons_edge/riddles/riddle

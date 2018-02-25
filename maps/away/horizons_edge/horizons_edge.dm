@@ -16,7 +16,7 @@
  	cost = 1
 
 /obj/effect/overmap/sector/horizons_edge
-	name = "unknown srtucture"
+	name = "unknown structure"
 	desc = "Sensors detect artificial structure. Avaliable patterns and recogniition algorithms fail to process recieved data."
 	icon_state = "object"
 	known = 0
