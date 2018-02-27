@@ -126,14 +126,15 @@
 /obj/effect/overmap_event/blackhole/New()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/overmap_event/blackhole/process()
+/obj/effect/overmap_event/blackhole/proc/process()
 	if(can_process)
 		can_process = 0
 		spawn(-1) supermatter_pull(src, world.view, pull_level)
 		can_process = 1
 
 /obj/effect/overmap_event/blackhole/Bump(var/atom/A)
-	if(pull_level == SUPER_SINGULO)
+	if(pull_level == STAGE_SUPER)
+		world << "butt"
 
 
 /datum/overmap_event
