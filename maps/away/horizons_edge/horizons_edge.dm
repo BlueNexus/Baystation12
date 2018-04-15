@@ -14,6 +14,7 @@
  	description = "Alein structure in space"
  	suffixes = list("horizons_edge/horizons_edge.dmm")
  	cost = 1
+ 	spawn_weight = 2
 
 /obj/effect/overmap/sector/horizons_edge
 	name = "unknown structure"

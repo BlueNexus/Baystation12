@@ -84,6 +84,7 @@
 	#include "../away/blueriver/blueriver.dm"
 	#include "../away/slavers/slavers_base.dm"
 	#include "../away/hydro/hydro.dm"
+	#include "../away/horizons_edge/horizons_edge.dm"
 
 	#include "../../code/modules/lobby_music/chasing_time.dm"
 	#include "../../code/modules/lobby_music/human.dm"

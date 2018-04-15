@@ -117,6 +117,7 @@
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "event"
 	opacity = 1
+	anchored = 0
 	var/can_process = 1
 
 /obj/effect/overmap_event/blackhole
@@ -124,9 +125,11 @@
 	var/pull_level = STAGE_ONE
 
 /obj/effect/overmap_event/blackhole/New()
+	..()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/overmap_event/blackhole/proc/process()
+/obj/effect/overmap_event/blackhole/Process()
+	..()
 	if(can_process)
 		can_process = 0
 		spawn(-1) supermatter_pull(src, world.view, pull_level)
