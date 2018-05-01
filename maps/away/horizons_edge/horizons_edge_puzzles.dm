@@ -54,16 +54,14 @@
 		if(A.z in GLOB.using_map.station_levels)
 			A.gravitychange(0)
 
-	//sleep(600)
-	sleep(60)
+	sleep(300)
 	var/obj/effect/overmap/sector/current_sector = null
 	for(var/obj/effect/overmap/O in map_sectors)
 		if(istype(O, /obj/effect/overmap/sector/horizons_edge))
 			current_sector = O
 	var/obj/effect/overmap_event/blackhole/BH = new/obj/effect/overmap_event/blackhole(get_turf(current_sector))
-	command_announcement.Announce("WARNING. automated sensors have detected that the gravitational anomaly's attraction gradient has increased to potentially dangerous levels. Estimated time until collapse: 250 seconds. Take immediate evasive action.", "Gravitational Anomaly")
-	//sleep(2400)
-	sleep(60)
+	command_announcement.Announce("WARNING. automated sensors have detected that the gravitational anomaly's attraction gradient has increased to potentially dangerous levels. Estimated time until collapse: 180 seconds. Take immediate evasive action.", "Gravitational Anomaly")
+	sleep(180)
 	BH.pull_level = STAGE_SUPER
 
 //////////////////////////////////////////////////////////////////////////////////////////////////BASIC RIDDLE DEFINITION

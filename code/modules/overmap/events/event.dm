@@ -123,17 +123,34 @@
 /obj/effect/overmap_event/blackhole
 	name = "black hole"
 	var/pull_level = STAGE_ONE
+	var/base_pull_delay = 30
+	var/current_pull_delay = 30
+	var/ticks_to_pull = 30
+
 
 /obj/effect/overmap_event/blackhole/New()
 	..()
 	START_PROCESSING(SSobj, src)
+	update_pull_strength(pull_level)
 
 /obj/effect/overmap_event/blackhole/Process()
 	..()
 	if(can_process)
 		can_process = 0
 		spawn(-1) supermatter_pull(src, world.view, pull_level)
-		can_process = 1
+		ticks_to_pull = current_pull_delay
+	else if(ticks_to_pull)
+		ticks_to_pull--
+		if(ticks_to_pull <= 0)
+			can_process = 1
+
+/obj/effect/overmap_event/blackhole/proc/update_pull_strength(var/level)
+	if(!pull_level)
+		return
+	pull_level = level
+	current_pull_delay = base_pull_delay / pull_level
+	ticks_to_pull = current_pull_delay
+	can_process = 0
 
 /obj/effect/overmap_event/blackhole/Bump(var/atom/A)
 	if(pull_level == STAGE_SUPER)
