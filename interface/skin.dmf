@@ -1405,3 +1405,126 @@ window "text_editor"
 		saved-params = ""
 		multi-line = true
 
+window "window1"
+	elem "window1"
+		type = MAIN
+		pos = 572,57
+		size = 739x562
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+	elem "button6"
+		type = BUTTON
+		pos = 136,104
+		size = 48x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "CAM PWR"
+		command = ""
+		button-type = pushbox
+	elem "safe_mcp_eject"
+		type = BUTTON
+		pos = 136,48
+		size = 48x104
+		anchor1 = none
+		anchor2 = none
+		text-color = #ffffff
+		background-color = #d3b5b5
+		border = sunken
+		saved-params = "is-checked"
+		text = "SAFE"
+		command = ""
+		button-type = pushbox
+	elem "button_mcp_fault_ack"
+		type = BUTTON
+		pos = 80,160
+		size = 104x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "FAULT ACK"
+		command = ""
+	elem "button_mcp_cam_pwr"
+		type = BUTTON
+		pos = 80,104
+		size = 48x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "CAM PWR"
+		command = ""
+		button-type = pushbox
+	elem "button_mcp_auto_start"
+		type = BUTTON
+		pos = 24,160
+		size = 48x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "AUTO START"
+		command = ""
+	elem "button_mcp_set_name"
+		type = BUTTON
+		pos = 24,104
+		size = 48x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "SET NAME"
+		command = ""
+	elem "button_mcp_maint_lock"
+		type = BUTTON
+		pos = 80,48
+		size = 48x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "MNT LOCK"
+		command = ""
+		button-type = pushbox
+	elem "grid1"
+		type = GRID
+		pos = 248,96
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		background-color = #c0c0c0
+		saved-params = ""
+		highlight-color = #000000
+	elem "label1"
+		type = LABEL
+		pos = 24,16
+		size = 160x20
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = line
+		saved-params = ""
+		text = "MAIN CONTROL PANEL"
+	elem "button_mcp_maint_power"
+		type = BUTTON
+		pos = 24,48
+		size = 48x48
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		border = sunken
+		saved-params = "is-checked"
+		text = "MNT PWR"
+		command = ""
+		button-type = pushbox
+
