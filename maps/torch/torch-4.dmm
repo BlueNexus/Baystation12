@@ -14976,26 +14976,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/assembly/robotics)
-"bkN" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/effect/floor_decal/corner/beige{
-	dir = 6
-	},
-/obj/machinery/camera/network/medbay{
-	c_tag = "Infirmary - Chemistry";
-	dir = 8
-	},
-/obj/structure/sign/warning/nosmoking_1{
-	dir = 8;
-	icon_state = "nosmoking";
-	pixel_x = 32
-	},
-/obj/item/weapon/storage/box/syringes,
-/turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
 "blb" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -20797,6 +20777,25 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/assembly/robotics)
+"hNy" = (
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/dropper,
+/obj/effect/floor_decal/corner/beige/three_quarters,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/weapon/reagent_containers/glass/beaker/insulated/large,
+/turf/simulated/floor/tiled/white,
+/area/medical/chemistry)
 "hOb" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -30824,25 +30823,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/firstdeck/aftstarboard)
-"uuS" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/effect/floor_decal/corner/beige/three_quarters,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
 "uBg" = (
 /obj/structure/sign/double/solgovflag/left{
 	pixel_y = 32
@@ -31933,6 +31913,26 @@
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
 	name = "Chemistry Cleaner"
 	},
+/turf/simulated/floor/tiled/white,
+/area/medical/chemistry)
+"HyU" = (
+/obj/item/weapon/storage/box/beakers/insulated,
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/weapon/reagent_containers/dropper,
+/obj/effect/floor_decal/corner/beige{
+	dir = 6
+	},
+/obj/machinery/camera/network/medbay{
+	c_tag = "Infirmary - Chemistry";
+	dir = 8
+	},
+/obj/structure/sign/warning/nosmoking_1{
+	dir = 8;
+	icon_state = "nosmoking";
+	pixel_x = 32
+	},
+/obj/item/weapon/storage/box/syringes,
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "HyY" = (
@@ -55496,7 +55496,7 @@ aqR
 fZb
 WGQ
 aud
-uuS
+hNy
 awv
 axB
 ayA
@@ -56302,7 +56302,7 @@ iub
 fpb
 aqT
 BFy
-bkN
+HyU
 gFb
 bLJ
 kgW

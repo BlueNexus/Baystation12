@@ -4,6 +4,7 @@
 /atom
 	var/temperature = T20C
 	var/temperature_coefficient = MAX_TEMPERATURE_COEFFICIENT
+	var/temperature_coefficient_modifier = 1
 
 /atom/movable/Entered(var/atom/movable/atom, var/atom/old_loc)
 	. = ..()
@@ -14,7 +15,7 @@
 
 /obj/Initialize()
 	. = ..()
-	temperature_coefficient = Clamp(MAX_TEMPERATURE_COEFFICIENT - w_class, MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT)
+	temperature_coefficient = Clamp((MAX_TEMPERATURE_COEFFICIENT - w_class) * temperature_coefficient_modifier, MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT)
 
 /obj/proc/HandleObjectHeating(var/obj/item/heated_by, var/mob/user, var/adjust_temp)
 	if(ATOM_IS_TEMPERATURE_SENSITIVE(src))
@@ -26,7 +27,7 @@
 
 /mob/Initialize()
 	. = ..()
-	temperature_coefficient = Clamp(MAX_TEMPERATURE_COEFFICIENT - Floor(mob_size/4), MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT)
+	temperature_coefficient = temperature_coefficient_modifier * Clamp((MAX_TEMPERATURE_COEFFICIENT - Floor(mob_size/4)) * temperature_coefficient_modifier, MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT)
 
 /atom/proc/ProcessAtomTemperature()
 
