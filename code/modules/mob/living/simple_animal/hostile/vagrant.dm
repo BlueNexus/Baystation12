@@ -53,6 +53,9 @@
 		turns_per_move = 2
 		MoveToTarget()
 
+/mob/living/simple_animal/hostile/vagrant/death(gibbed)
+	gib()
+
 /mob/living/simple_animal/hostile/vagrant/Life()
 	. = ..()
 	if(!.)
@@ -81,9 +84,6 @@
 		new/mob/living/simple_animal/hostile/vagrant(src.loc)
 		new/mob/living/simple_animal/hostile/vagrant(src.loc)
 		gib()
-		return
-	if(health < 1)
-		gib() //Leave no identifiable evidence.
 		return
 
 /mob/living/simple_animal/hostile/vagrant/on_update_icon()
