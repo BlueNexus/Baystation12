@@ -80,8 +80,6 @@
 	allowed_ranks = list(
 		/datum/mil_rank/civ/civ
 	)
-	psi_latency_chance = 2.5
-
 
 /datum/map/torch
 	default_assistant_title = "Passenger"
